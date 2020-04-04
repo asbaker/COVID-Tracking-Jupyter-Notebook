@@ -1,11 +1,12 @@
 version:  '3'
 services:
-  covid-datascience-notebook:
-      image:    jupyter/datascience-notebook
-      volumes:
-        - ${LOCAL_WORKING_DIR}:/home/jovyan/work
-        - ${LOCAL_DATASETS}:/home/jovyan/work/datasets
-      ports:
-        - ${PORT}:8888
-      container_name:   covid_jupyter_notebook
-      command: "start-notebook.sh"
+  notebook:
+    build:
+      context: ./jupyter-notebook-docker
+    volumes:
+      - ${LOCAL_WORKING_DIR}:/home/jovyan/work
+      - ${LOCAL_DATASETS}:/home/jovyan/work/datasets
+    ports:
+      - ${PORT}:8888
+    container_name:   covid_jupyter_notebook
+    command: "start-notebook.sh"
